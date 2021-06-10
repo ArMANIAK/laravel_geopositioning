@@ -33,5 +33,16 @@ class CoordinatesQueryController extends Controller
             [$city, $region, $country] = array_slice($address_array, -3);
             echo "$fullAddress<br/>Country: {$country['text']}, State: {$region['text']}, City: {$city['text']}<br/>";
         }
+        $requestedRegion = Region::firstOrNew([
+            'country' => $country['text'],
+            'region' => $region['text'],
+            'city' => $city['text']
+        ]);
+        $requestedRegion->save();
+        $responseAddress = Response::firstOrNew([
+            'region_id' => $requestedRegion->id,
+            'address' => $fullAddress
+        ]);
+        $responseAddress->save();
     }
 }
