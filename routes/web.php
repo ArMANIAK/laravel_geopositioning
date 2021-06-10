@@ -15,3 +15,8 @@ use App\Http\Controllers\SearchedAddresses;
 |
 */
 
+Route::get('/', function () {
+    return view('coordinatesForm');
+});
+
+Route::post('/address', [CoordinatesQueryController::class, 'getReverseGeocoding']);
