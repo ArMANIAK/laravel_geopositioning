@@ -20,3 +20,6 @@ Route::get('/', function () {
 });
 
 Route::post('/address', [CoordinatesQueryController::class, 'getReverseGeocoding']);
+
+Route::get('/statistics', [SearchedAddresses::class, 'index']);
+Route::get('/statistics/{id}', [SearchedAddresses::class, 'searchedByRegion']);
