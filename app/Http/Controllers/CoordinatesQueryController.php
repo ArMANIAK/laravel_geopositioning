@@ -43,6 +43,8 @@ class CoordinatesQueryController extends Controller
             'region_id' => $requestedRegion->id,
             'address' => $fullAddress
         ]);
+        $requestedCoords->response_id = $responseAddress->id;
+        $requestedCoords->save();
         $responseAddress->save();
     }
 }
